@@ -3,6 +3,8 @@ package api
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/jakeisonline/go-volvo/helpers"
 )
 
 func Call(endpointName string, vin string) (*http.Response, error) {
@@ -13,8 +15,7 @@ func Call(endpointName string, vin string) (*http.Response, error) {
 	if endpoint.Method == "GET" {
 		resp, err = get(endpoint.Url)
 	} else {
-		errorString := fmt.Sprintf("[go-volvo] Invalid method: %v", endpoint.Method)
-		panic(errorString)
+		panic(fmt.Sprintf("Invalid method: %v", endpoint.Method))
 	}
 
 	if err != nil {
@@ -24,7 +25,7 @@ func Call(endpointName string, vin string) (*http.Response, error) {
 	if resp.StatusCode == http.StatusOK {
 		return resp, err
 	} else {
-		return nil, fmt.Errorf("[go-volvo] status code received: %v", resp.StatusCode)
+		return nil, helpers.Error(fmt.Sprintf("status code received: %v", resp.StatusCode))
 	}
 }
 
