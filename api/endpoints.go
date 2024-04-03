@@ -10,97 +10,99 @@ type Endpoint struct {
 	Url    string
 }
 
+var prefix string = "https://api.volvocars.com/connected-vehicle/v2/vehicles"
+
 var endpoints = map[string]Endpoint{
 	"climatization-start": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/climatization-start",
+		Url:    prefix + "/{vin}/commands/climatization-start",
 		Method: "POST",
 	},
 	"climatization-stop": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/climatization-stop",
+		Url:    prefix + "/{vin}/commands/climatization-stop",
 		Method: "POST",
 	},
 	"commands": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands",
+		Url:    prefix + "/{vin}/commands",
 		Method: "GET",
 	},
 	"command-accessibility": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/command-accessibility",
+		Url:    prefix + "/{vin}/command-accessibility",
 		Method: "GET",
 	},
 	"diagnostics": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/engine",
+		Url:    prefix + "/{vin}/engine",
 		Method: "GET",
 	},
 	"windows": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/windows",
+		Url:    prefix + "/{vin}/windows",
 		Method: "GET",
 	},
 	"doors": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/doors",
+		Url:    prefix + "/{vin}/doors",
 		Method: "GET",
 	},
 	"lock": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/lock",
+		Url:    prefix + "/{vin}/commands/lock",
 		Method: "POST",
 	},
 	"lock-reduced-guard": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/lock-reduced-guard",
+		Url:    prefix + "/{vin}/commands/lock-reduced-guard",
 		Method: "POST",
 	},
 	"unlock": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/unlock",
+		Url:    prefix + "/{vin}/commands/unlock",
 		Method: "POST",
 	},
 	"engine-status": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/engine-status",
+		Url:    prefix + "/{vin}/engine-status",
 		Method: "GET",
 	},
 	"engine-start": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/engine-start",
+		Url:    prefix + "/{vin}/commands/engine-start",
 		Method: "POST",
 	},
 	"engine-stop": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/engine-stop",
+		Url:    prefix + "/{vin}/commands/engine-stop",
 		Method: "POST",
 	},
 	"fuel": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/fuel",
+		Url:    prefix + "/{vin}/fuel",
 		Method: "GET",
 	},
 	"flash": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/flash",
+		Url:    prefix + "/{vin}/commands/flash",
 		Method: "POST",
 	},
 	"honk": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/honk",
+		Url:    prefix + "/{vin}/commands/honk",
 		Method: "POST",
 	},
 	"honk-flash": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/commands/honk-flash",
+		Url:    prefix + "/{vin}/commands/honk-flash",
 		Method: "POST",
 	},
 	"odometer": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/odometer",
+		Url:    prefix + "/{vin}/odometer",
 		Method: "GET",
 	},
 	"statistics": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/statistics",
+		Url:    prefix + "/{vin}/statistics",
 		Method: "GET",
 	},
 	"tyres": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/tyres",
+		Url:    prefix + "/{vin}/tyres",
 		Method: "GET",
 	},
 	"vehicles": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles",
+		Url:    prefix,
 		Method: "GET",
 	},
 	"vehicle": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}",
+		Url:    prefix + "/{vin}",
 		Method: "GET",
 	},
 	"warnings": {
-		Url:    "https://api.volvocars.com/connected-vehicle/v2/vehicles/{vin}/warnings",
+		Url:    prefix + "/{vin}/warnings",
 		Method: "GET",
 	},
 }

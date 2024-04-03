@@ -12,6 +12,10 @@ import (
 )
 
 func main() {
-	foo := api.GetEndpoint("vehicle", "awdawd")
-	fmt.Println(foo.Url)
+	resp, err := api.Call("vehicles", "")
+	if err != nil {
+		fmt.Print(err)
+	} else {
+		fmt.Println(resp)
+	}
 }
