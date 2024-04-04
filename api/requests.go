@@ -25,8 +25,8 @@ func request(endpoint Endpoint) (*http.Response, error) {
 	}
 
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Bearer "+accessToken)
-	req.Header.Add("VCC-API-Key", apiKey)
+	req.Header.Add("Authorization", "Bearer "+GetAccessToken())
+	req.Header.Add("VCC-API-Key", GetApiKey())
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
