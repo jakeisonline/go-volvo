@@ -8,16 +8,26 @@ import (
 )
 
 func Call(endpointName string, vin string) (*http.Response, error) {
-	var resp *http.Response
-	var err error
 	endpoint := GetEndpoint(endpointName, vin)
 
-	if endpoint.Method == "GET" {
-		resp, err = get(endpoint.Url)
+	if endpoint.Method == "GET" || endpoint.Method == "POST" {
+		resp, err := request(endpoint)
+		return resp, err
 	} else {
 		panic(fmt.Sprintf("Invalid method: %v", endpoint.Method))
 	}
+}
 
+func request(endpoint Endpoint) (*http.Response, error) {
+	req, err := http.NewRequest(endpoint.Method, endpoint.Url, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
@@ -27,13 +37,4 @@ func Call(endpointName string, vin string) (*http.Response, error) {
 	} else {
 		return nil, helpers.Error(fmt.Sprintf("status code received: %v", resp.StatusCode))
 	}
-}
-
-func get(endpointUrl string) (*http.Response, error) {
-	resp, err := http.Get(endpointUrl)
-	if err != nil {
-		return nil, err
-	}
-
-	return resp, nil
 }
