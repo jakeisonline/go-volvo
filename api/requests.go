@@ -25,6 +25,8 @@ func request(endpoint Endpoint) (*http.Response, error) {
 	}
 
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", "Bearer "+accessToken)
+	req.Header.Add("VCC-API-Key", apiKey)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -35,6 +37,6 @@ func request(endpoint Endpoint) (*http.Response, error) {
 	if resp.StatusCode == http.StatusOK {
 		return resp, err
 	} else {
-		return nil, helpers.Error(fmt.Sprintf("status code received: %v", resp.StatusCode))
+		return nil, helpers.Error(fmt.Sprintf("status code received: %v\n\n%v", resp.StatusCode, resp))
 	}
 }
