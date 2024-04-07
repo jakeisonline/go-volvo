@@ -1,9 +1,5 @@
-<div align="center">
-  <h1 align="center" style="font-size: 3em; border-bottom: 0; margin-bottom: 0; padding-bottom: 0;">Go-Volvo</h1>
-  <p align="center">
-    <em>A Simple Go API Client For <a href="https://developer.volvocars.com/apis/" target="_blank">Volvo's APIs</a></em>
-  </p>
-</div>
+# Go-Volvo
+*A simple Go API client for [Volvo's APIs](https://developer.volvocars.com/apis/)*
 
 Very much work in progress. Hoping to create a small, simple API client for Go.
 
