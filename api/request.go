@@ -68,7 +68,7 @@ func request(endpointName string, vin string) (interface{}, error) {
 				return nil, err
 			}
 			return response, nil
-		case "engine-model":
+		case "engine":
 			var response EngineModel
 			err = json.Unmarshal(body, &response)
 			if err != nil {
