@@ -31,8 +31,16 @@ var endpoints = map[string]Endpoint{
 		Url:    prefix + "/{vin}/command-accessibility",
 		Method: "GET",
 	},
-	"diagnostics": {
+	"engine": {
 		Url:    prefix + "/{vin}/engine",
+		Method: "GET",
+	},
+	"diagnostics": {
+		Url:    prefix + "/{vin}/diagnostics",
+		Method: "GET",
+	},
+	"brakes": {
+		Url:    prefix + "/{vin}/brakes",
 		Method: "GET",
 	},
 	"windows": {

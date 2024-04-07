@@ -9,7 +9,7 @@ func Panic(message string) {
 	panic(errorString)
 }
 
-func Error(message string) error {
+func Error(message error) error {
 	errorString := fmt.Errorf("%s %s", marker, message)
 	return errorString
 }
