@@ -42,7 +42,7 @@ type ClimatizationStop struct {
 	} `json:"data"`
 }
 
-type CommandsModel []struct {
+type CommandsModel struct {
 	Data []struct {
 		Command string `json:"command"`
 		Href    string `json:"href"`
@@ -68,11 +68,11 @@ type EngineModel struct {
 
 type DiagnosticsModel struct {
 	Data struct {
-		ServiceWarning       ValueTimestamp     `json:"serviceWarning"`
-		ServiceTrigger       ValueTimestamp     `json:"serviceTrigger"`
-		EngineHoursToService ValueUnitTimestamp `json:"engineHoursToService"`
-		DistanceToService    ValueUnitTimestamp `json:"distanceToService"`
-		TimeToService        ValueUnitTimestamp `json:"timeToService"`
+		ServiceWarning          ValueTimestamp     `json:"serviceWarning"`
+		EngineHoursToService    ValueUnitTimestamp `json:"engineHoursToService"`
+		DistanceToService       ValueUnitTimestamp `json:"distanceToService"`
+		WasherFluidLevelWarning ValueTimestamp     `json:"washerFluidLevelWarning"`
+		TimeToService           ValueUnitTimestamp `json:"timeToService"`
 	} `json:"data"`
 }
 
@@ -90,13 +90,14 @@ type WindowsModel struct {
 		FrontLeftWindow  ValueTimestamp `json:"frontLeftWindow"`
 		FrontRightWindow ValueTimestamp `json:"frontRightWindow"`
 		RearLeftWindow   ValueTimestamp `json:"rearLeftWindow"`
-		RearRightWindow  ValueTimestamp `json:"data"`
+		RearRightWindow  ValueTimestamp `json:"rearRightWindow"`
+		Sunroof          ValueTimestamp `json:"sunroof"`
 	}
 }
 
 type DoorsModel struct {
 	Data struct {
-		CarLocked      ValueTimestamp `json:"carLocked"`
+		CentralLock    ValueTimestamp `json:"centralLock"`
 		FrontLeftDoor  ValueTimestamp `json:"frontLeftDoor"`
 		FrontRightDoor ValueTimestamp `json:"frontRightDoor"`
 		Hood           ValueTimestamp `json:"hood"`
@@ -148,27 +149,29 @@ type EngineStopModel struct {
 }
 
 type FuelModel struct {
-	FuelAmount         ValueUnitTimestamp `json:"fuelAmount,omitempty"`
-	BatteryChargeLevel ValueUnitTimestamp `json:"batteryChargeLevel"`
+	Data struct {
+		FuelAmount         ValueUnitTimestamp `json:"fuelAmount,omitempty"`
+		BatteryChargeLevel ValueUnitTimestamp `json:"batteryChargeLevel"`
+	}
 }
 
 type OdometerModel struct {
-	Odometer ValueUnitTimestamp `json:"odometer" mapstructure:",omitempty"`
+	Data struct {
+		Odometer ValueUnitTimestamp `json:"odometer" mapstructure:",omitempty"`
+	}
 }
 
 type StatisticsModel struct {
 	Data struct {
-		AverageFuelConsumption              ValueUnitTimestamp `json:"averageFuelConsumption"`
-		AverageEnergyConsumption            ValueUnitTimestamp `json:"averageEnergyConsumption"`
-		AverageFuelConsumptionAutomatic     ValueUnitTimestamp `json:"averageFuelConsumptionAutomatic"`
-		AverageEnergyConsumptionAutomatic   ValueUnitTimestamp `json:"averageEnergyConsumptionAutomatic"`
-		AverageEnergyConsumptionSinceCharge ValueUnitTimestamp `json:"averageEnergyConsumptionSinceCharge"`
-		AverageSpeed                        ValueUnitTimestamp `json:"averageSpeed"`
-		AverageSpeedAutomatic               ValueUnitTimestamp `json:"averageSpeedAutomatic"`
-		TripMeterManual                     ValueUnitTimestamp `json:"tripMeterManual"`
-		TripMeterAutomatic                  ValueUnitTimestamp `json:"tripMeterAutomatic"`
-		DistanceToEmptyTank                 ValueUnitTimestamp `json:"distanceToEmptyTank"`
-		DistanceToEmptyBattery              ValueUnitTimestamp `json:"distanceToEmptyBattery"`
+		AverageFuelConsumption          ValueUnitTimestamp `json:"averageFuelConsumption"`
+		AverageEnergyConsumption        ValueUnitTimestamp `json:"averageEnergyConsumption"`
+		AverageFuelConsumptionAutomatic ValueUnitTimestamp `json:"averageFuelConsumptionAutomatic"`
+		AverageSpeed                    ValueUnitTimestamp `json:"averageSpeed"`
+		AverageSpeedAutomatic           ValueUnitTimestamp `json:"averageSpeedAutomatic"`
+		TripMeterManual                 ValueUnitTimestamp `json:"tripMeterManual"`
+		TripMeterAutomatic              ValueUnitTimestamp `json:"tripMeterAutomatic"`
+		DistanceToEmptyTank             ValueUnitTimestamp `json:"distanceToEmptyTank"`
+		DistanceToEmptyBattery          ValueUnitTimestamp `json:"distanceToEmptyBattery"`
 	} `json:"data"`
 }
 
@@ -197,7 +200,7 @@ type VehicleModel struct {
 		BatteryCapacityKWH float64 `json:"batteryCapacityKWH"`
 		Images             struct {
 			ExteriorImageURL string `json:"exteriorImageUrl"`
-			InteriorImageURL string `json:"interiorImageUrl"`
+			InternalImageURL string `json:"internalImageUrl"`
 		} `json:"images"`
 		Descriptions struct {
 			Model      string `json:"model"`

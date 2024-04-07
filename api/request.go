@@ -89,6 +89,13 @@ func request(endpointName string, vin string) (interface{}, error) {
 				return nil, err
 			}
 			return response, nil
+		case "windows":
+			var response WindowsModel
+			err = json.Unmarshal(body, &response)
+			if err != nil {
+				return nil, err
+			}
+			return response, nil
 		case "doors":
 			var response DoorsModel
 			err = json.Unmarshal(body, &response)
