@@ -40,15 +40,15 @@ func request(endpointName string, vin string) (interface{}, error) {
 		}
 
 		switch endpointName {
-		case "climitization-start":
-			var response ClimitizationStart
+		case "climatization-start":
+			var response ClimatizationStart
 			err = json.Unmarshal(body, &response)
 			if err != nil {
 				return nil, err
 			}
 			return response, nil
-		case "climitization-stop":
-			var response ClimitizationStop
+		case "climatization-stop":
+			var response ClimatizationStop
 			err = json.Unmarshal(body, &response)
 			if err != nil {
 				return nil, err

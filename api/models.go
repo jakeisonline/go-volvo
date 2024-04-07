@@ -30,13 +30,13 @@ type SuccessWithStatusModel struct {
 
 /* SPECIFIC MODELS */
 
-type ClimitizationStart struct {
+type ClimatizationStart struct {
 	Data struct {
 		SuccessNoStatusModel
 	} `json:"data"`
 }
 
-type ClimitizationStop struct {
+type ClimatizationStop struct {
 	Data struct {
 		SuccessNoStatusModel
 	} `json:"data"`
