@@ -18,18 +18,14 @@ type ValueUnitTimestamp struct {
 }
 
 type SuccessNoStatusModel struct {
-	Data struct {
-		Vin          string `json:"vin"`
-		InvokeStatus string `json:"invokeStatus"`
-		Message      string `json:"message"`
-	} `json:"data"`
+	Vin          string `json:"vin"`
+	InvokeStatus string `json:"invokeStatus"`
+	Message      string `json:"message"`
 }
 
 type SuccessWithStatusModel struct {
-	Data struct {
-		SuccessNoStatusModel
-		StatusCode int `json:"statusCode"`
-	} `json:"data"`
+	SuccessNoStatusModel
+	StatusCode int `json:"statusCode"`
 }
 
 /* SPECIFIC MODELS */
@@ -114,7 +110,7 @@ type DoorsModel struct {
 type LockModel struct {
 	Data struct {
 		SuccessNoStatusModel
-	} `json:"data"`
+	}
 }
 
 type LockReducedGuard struct {
