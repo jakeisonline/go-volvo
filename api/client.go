@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -35,5 +36,10 @@ func (c *Client) SetAccessToken(newAccessToken string) {
 
 func (c *Client) Call(endpointName string, vin string) (*http.Response, error) {
 	resp, err := request(endpointName, vin, c)
-	return resp, err
+
+	if resp.StatusCode == http.StatusOK {
+		return resp, err
+	} else {
+		return nil, fmt.Errorf("status code received: %v\n\n%v", resp.StatusCode, resp)
+	}
 }
