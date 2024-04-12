@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-/* HELPER MODELS */
+/* HELPER ResponseS */
 
 type valueTimestamp struct {
 	Value     string    `json:"value"`
@@ -17,39 +17,39 @@ type valueUnitTimestamp struct {
 	Timestamp time.Time `json:"timestamp"`
 }
 
-type successNoStatusModel struct {
+type successNoStatus struct {
 	Vin          string `json:"vin"`
 	InvokeStatus string `json:"invokeStatus"`
 	Message      string `json:"message"`
 }
 
-type successWithStatusModel struct {
-	successNoStatusModel
+type successWithStatus struct {
+	successNoStatus
 	StatusCode int `json:"statusCode"`
 }
 
-/* SPECIFIC MODELS */
+/* SPECIFIC ResponseS */
 
 type ClimatizationStart struct {
 	Data struct {
-		successNoStatusModel
+		successNoStatus
 	} `json:"data"`
 }
 
 type ClimatizationStop struct {
 	Data struct {
-		successNoStatusModel
+		successNoStatus
 	} `json:"data"`
 }
 
-type CommandsModel struct {
+type CommandsResponse struct {
 	Data []struct {
 		Command string `json:"command"`
 		Href    string `json:"href"`
 	} `json:"data"`
 }
 
-type CommandAccessibilityModel struct {
+type CommandAccessibilityResponse struct {
 	Data struct {
 		AvailabilityStatus struct {
 			Value             string    `json:"value"`
@@ -59,14 +59,14 @@ type CommandAccessibilityModel struct {
 	} `json:"data"`
 }
 
-type EngineModel struct {
+type EngineResponse struct {
 	Data struct {
 		EngineCoolantLevelWarning valueTimestamp `json:"engineCoolantLevelWarning"`
 		OilLevelWarning           valueTimestamp `json:"oilLevelWarning"`
 	} `json:"data"`
 }
 
-type DiagnosticsModel struct {
+type DiagnosticsResponse struct {
 	Data struct {
 		ServiceWarning          valueTimestamp     `json:"serviceWarning"`
 		EngineHoursToService    valueUnitTimestamp `json:"engineHoursToService"`
@@ -76,7 +76,7 @@ type DiagnosticsModel struct {
 	} `json:"data"`
 }
 
-type BrakesModel struct {
+type BrakesResponse struct {
 	Data struct {
 		BrakeFluidLevelWarning struct {
 			Timestamp  time.Time `json:"timestamp"`
@@ -85,7 +85,7 @@ type BrakesModel struct {
 	} `json:"data"`
 }
 
-type WindowsModel struct {
+type WindowsResponse struct {
 	Data struct {
 		FrontLeftWindow  valueTimestamp `json:"frontLeftWindow"`
 		FrontRightWindow valueTimestamp `json:"frontRightWindow"`
@@ -95,7 +95,7 @@ type WindowsModel struct {
 	}
 }
 
-type DoorsModel struct {
+type DoorsResponse struct {
 	Data struct {
 		CentralLock    valueTimestamp `json:"centralLock"`
 		FrontLeftDoor  valueTimestamp `json:"frontLeftDoor"`
@@ -108,60 +108,60 @@ type DoorsModel struct {
 	} `json:"data"`
 }
 
-type LockModel struct {
+type LockResponse struct {
 	Data struct {
-		successNoStatusModel
+		successNoStatus
 	}
 }
 
 type LockReducedGuard struct {
 	Data struct {
-		successNoStatusModel
+		successNoStatus
 		ReadyToUnlock      bool `json:"readyToUnlock"`
 		ReadyToUnlockUntil int  `json:"readyToUnlockUntil"`
 	} `json:"data"`
 }
 
-type UnlockModel struct {
+type UnlockResponse struct {
 	Data struct {
-		successNoStatusModel
+		successWithStatus
 		ReadyToUnlock      bool `json:"readyToUnlock"`
 		ReadyToUnlockUntil int  `json:"readyToUnlockUntil"`
 	} `json:"data"`
 }
 
-type EngineStatusModel struct {
+type EngineStatusResponse struct {
 	Data struct {
 		EngineStatus valueTimestamp `json:"engineStatus"`
 	} `json:"data"`
 }
 
-type EngineStartModel struct {
+type EngineStartResponse struct {
 	Data struct {
-		successNoStatusModel
+		successNoStatus
 	} `json:"data"`
 }
 
-type EngineStopModel struct {
+type EngineStopResponse struct {
 	Data struct {
-		successNoStatusModel
+		successNoStatus
 	} `json:"data"`
 }
 
-type FuelModel struct {
+type FuelResponse struct {
 	Data struct {
 		FuelAmount         valueUnitTimestamp `json:"fuelAmount,omitempty"`
 		BatteryChargeLevel valueUnitTimestamp `json:"batteryChargeLevel"`
 	}
 }
 
-type OdometerModel struct {
+type OdometerResponse struct {
 	Data struct {
 		Odometer valueUnitTimestamp `json:"odometer" mapstructure:",omitempty"`
 	}
 }
 
-type StatisticsModel struct {
+type StatisticsResponse struct {
 	Data struct {
 		AverageFuelConsumption          valueUnitTimestamp `json:"averageFuelConsumption"`
 		AverageEnergyConsumption        valueUnitTimestamp `json:"averageEnergyConsumption"`
@@ -175,7 +175,7 @@ type StatisticsModel struct {
 	} `json:"data"`
 }
 
-type TyresModel struct {
+type TyresResponse struct {
 	Data struct {
 		FrontLeft  valueTimestamp `json:"frontLeft"`
 		FrontRight valueTimestamp `json:"frontRight"`
@@ -184,16 +184,16 @@ type TyresModel struct {
 	} `json:"data"`
 }
 
-type VehiclesModel struct {
+type VehiclesResponse struct {
 	Data []struct {
 		Vin string `json:"vin"`
 	} `json:"data"`
 }
 
-type VehicleModel struct {
+type VehicleResponse struct {
 	Data struct {
 		Vin                string  `json:"vin"`
-		ModelYear          int     `json:"modelYear"`
+		ResponseYear       int     `json:"ResponseYear"`
 		Gearbox            string  `json:"gearbox"`
 		FuelType           string  `json:"fuelType"`
 		ExternalColour     string  `json:"externalColour"`
@@ -203,14 +203,14 @@ type VehicleModel struct {
 			InternalImageURL string `json:"internalImageUrl"`
 		} `json:"images"`
 		Descriptions struct {
-			Model      string `json:"model"`
+			Response   string `json:"Response"`
 			Upholstery string `json:"upholstery"`
 			Steering   string `json:"steering"`
 		} `json:"descriptions"`
 	} `json:"data"`
 }
 
-type WarningsModel struct {
+type WarningsResponse struct {
 	Data struct {
 		BrakeLightLeftWarning           valueTimestamp `json:"brakeLightLeftWarning"`
 		BrakeLightCenterWarning         valueTimestamp `json:"brakeLightCenterWarning"`
