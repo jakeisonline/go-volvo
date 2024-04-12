@@ -119,7 +119,7 @@ func GetEndpoint(endpointName string, vin string) Endpoint {
 	endpointMatch := endpoints[endpointName]
 
 	if len(endpointMatch.Url) == 0 {
-		ThrowPanic(fmt.Sprintf("Unable to match endpoint named \"%v\"", endpointName))
+		throwPanic(fmt.Sprintf("Unable to match endpoint named \"%v\"", endpointName))
 	}
 
 	if strings.Contains(endpointMatch.Url, "{vin}") {
@@ -131,7 +131,7 @@ func GetEndpoint(endpointName string, vin string) Endpoint {
 
 func replaceVin(endpointUrl string, vin string) string {
 	if len(vin) == 0 {
-		ThrowPanic("Valid endpoint, but no VIN supplied")
+		throwPanic("Valid endpoint, but no VIN supplied")
 	}
 
 	return strings.Replace(endpointUrl, "{vin}", vin, -1)

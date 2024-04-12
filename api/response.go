@@ -90,12 +90,12 @@ func handleResponse(endpointName string, resp *http.Response) (interface{}, erro
 			var response WarningsModel
 			return unmarshalAndCheck(body, &response)
 		default:
-			return nil, MakeError(
+			return nil, makeError(
 				fmt.Errorf("unable to find relevant Unmarshal type for endpoint named: %v", endpointName),
 			)
 		}
 	} else {
-		return nil, MakeError(
+		return nil, makeError(
 			fmt.Errorf("status code received: %v\n\n%v", resp.StatusCode, resp),
 		)
 	}
