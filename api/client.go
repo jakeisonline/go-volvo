@@ -1,5 +1,9 @@
 package api
 
+import (
+	"net/http"
+)
+
 type Configuration struct {
 	ApiKey      string
 	AccessToken string
@@ -29,7 +33,7 @@ func (c *Client) SetAccessToken(newAccessToken string) {
 	c.accessToken = newAccessToken
 }
 
-func (c *Client) Call(endpointName string, vin string) (interface{}, error) {
+func (c *Client) Call(endpointName string, vin string) (*http.Response, error) {
 	resp, err := request(endpointName, vin, c)
 	return resp, err
 }

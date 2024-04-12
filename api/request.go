@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-func request(endpointName string, vin string, c *Client) (interface{}, error) {
+func request(endpointName string, vin string, c *Client) (*http.Response, error) {
 	endpointMap := GetEndpoint(endpointName, vin)
 
 	req, err := http.NewRequest(endpointMap.Method, endpointMap.Url, nil)
@@ -21,7 +21,6 @@ func request(endpointName string, vin string, c *Client) (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
 
-	return handleResponse(endpointName, resp)
+	return resp, err
 }
