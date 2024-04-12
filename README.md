@@ -31,17 +31,15 @@ resp, err := client.Call("vehicles", "")
 if err != nil {
   fmt.Print(err)
 } else {
-  if resp.StatusCode == http.StatusOK {
-    body, err := io.ReadAll(resp.Body)
-    if err != nil {
-      fmt.Print(err)
-    }
-    defer resp.Body.Close()
-
-    var response *api.VehiclesResponse
-    api.UnmarshalAndCheck(body, &response)
-    fmt.Println(response.Data)
+  body, err := io.ReadAll(resp.Body)
+  if err != nil {
+    fmt.Print(err)
   }
+  defer resp.Body.Close()
+
+  var response *api.VehiclesResponse
+  api.UnmarshalAndCheck(body, &response)
+  fmt.Println(response.Data)
 }
 ```
 
