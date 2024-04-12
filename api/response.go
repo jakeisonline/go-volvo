@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
-	"github.com/jakeisonline/go-volvo/helpers"
 )
 
 func unmarshalAndCheck(body []byte, v interface{}) (interface{}, error) {
@@ -92,12 +90,12 @@ func handleResponse(endpointName string, resp *http.Response) (interface{}, erro
 			var response WarningsModel
 			return unmarshalAndCheck(body, &response)
 		default:
-			return nil, helpers.Error(
+			return nil, MakeError(
 				fmt.Errorf("unable to find relevant Unmarshal type for endpoint named: %v", endpointName),
 			)
 		}
 	} else {
-		return nil, helpers.Error(
+		return nil, MakeError(
 			fmt.Errorf("status code received: %v\n\n%v", resp.StatusCode, resp),
 		)
 	}

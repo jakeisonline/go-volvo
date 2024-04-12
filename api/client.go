@@ -1,7 +1,5 @@
 package api
 
-import "github.com/jakeisonline/go-volvo/helpers"
-
 type Configuration struct {
 	ApiKey      string
 	AccessToken string
@@ -33,7 +31,7 @@ func (c *Client) SetAccessToken(newAccessToken string) {
 
 func (c *Client) GetAccessToken() string {
 	if c.accessToken == "" {
-		helpers.Panic("No accessToken defined, did you set one?")
+		ThrowPanic("No accessToken defined, did you set one?")
 	}
 	return c.accessToken
 }
