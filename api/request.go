@@ -4,12 +4,7 @@ import (
 	"net/http"
 )
 
-func Call(endpointName string, vin string) (interface{}, error) {
-	resp, err := request(endpointName, vin)
-	return resp, err
-}
-
-func request(endpointName string, vin string) (interface{}, error) {
+func request(endpointName string, vin string, c *Client) (interface{}, error) {
 	endpointMap := GetEndpoint(endpointName, vin)
 
 	req, err := http.NewRequest(endpointMap.Method, endpointMap.Url, nil)
@@ -18,8 +13,8 @@ func request(endpointName string, vin string) (interface{}, error) {
 	}
 
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Bearer "+GetAccessToken())
-	req.Header.Add("VCC-API-Key", GetApiKey())
+	req.Header.Add("Authorization", "Bearer "+c.accessToken)
+	req.Header.Add("VCC-API-Key", c.apiKey)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
