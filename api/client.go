@@ -11,14 +11,14 @@ type Client struct {
 }
 
 func NewClient(apiKey string) *Client {
-	return NewClientConfig(
+	return newClientConfig(
 		Configuration{
 			ApiKey: apiKey,
 		},
 	)
 }
 
-func NewClientConfig(config Configuration) *Client {
+func newClientConfig(config Configuration) *Client {
 	return &Client{
 		apiKey:      config.ApiKey,
 		accessToken: config.AccessToken,
