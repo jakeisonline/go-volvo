@@ -3,6 +3,48 @@
 
 Very much work in progress. Hoping to create a small, simple API client for Go.
 
+## Getting Started
+
+Get the Volvo Go API Client as a new module in your project:
+
+```go
+go get github.com/jakeisonline/go-volvo
+```
+
+Import the package into your project:
+
+```go
+import "github.com/jakeisonline/go-volvo/api"
+```
+
+Initialise a new API client:
+
+```go
+client := api.NewClient("YourApiToken")
+client.setAccessToken("YourAccessToken")
+```
+
+Now, make a call to an endpoint of your choice:
+
+```go
+resp, err := client.Call("vehicles", "")
+if err != nil {
+  fmt.Print(err)
+} else {
+  if resp.StatusCode == http.StatusOK {
+    body, err := io.ReadAll(resp.Body)
+    if err != nil {
+      fmt.Print(err)
+    }
+    defer resp.Body.Close()
+
+    var response *api.VehiclesResponse
+    api.UnmarshalAndCheck(body, &response)
+    fmt.Println(response.Data)
+  }
+}
+```
+
 ## Roadmap
 
 - [ ] Initiate auth code flow
