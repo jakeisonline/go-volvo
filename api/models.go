@@ -6,25 +6,25 @@ import (
 
 /* HELPER MODELS */
 
-type ValueTimestamp struct {
+type valueTimestamp struct {
 	Value     string    `json:"value"`
 	Timestamp time.Time `json:"timestamp"`
 }
 
-type ValueUnitTimestamp struct {
+type valueUnitTimestamp struct {
 	Value     float32   `json:"value"`
 	Unit      string    `json:"unit"`
 	Timestamp time.Time `json:"timestamp"`
 }
 
-type SuccessNoStatusModel struct {
+type successNoStatusModel struct {
 	Vin          string `json:"vin"`
 	InvokeStatus string `json:"invokeStatus"`
 	Message      string `json:"message"`
 }
 
-type SuccessWithStatusModel struct {
-	SuccessNoStatusModel
+type successWithStatusModel struct {
+	successNoStatusModel
 	StatusCode int `json:"statusCode"`
 }
 
@@ -32,13 +32,13 @@ type SuccessWithStatusModel struct {
 
 type ClimatizationStart struct {
 	Data struct {
-		SuccessNoStatusModel
+		successNoStatusModel
 	} `json:"data"`
 }
 
 type ClimatizationStop struct {
 	Data struct {
-		SuccessNoStatusModel
+		successNoStatusModel
 	} `json:"data"`
 }
 
@@ -61,18 +61,18 @@ type CommandAccessibilityModel struct {
 
 type EngineModel struct {
 	Data struct {
-		EngineCoolantLevelWarning ValueTimestamp `json:"engineCoolantLevelWarning"`
-		OilLevelWarning           ValueTimestamp `json:"oilLevelWarning"`
+		EngineCoolantLevelWarning valueTimestamp `json:"engineCoolantLevelWarning"`
+		OilLevelWarning           valueTimestamp `json:"oilLevelWarning"`
 	} `json:"data"`
 }
 
 type DiagnosticsModel struct {
 	Data struct {
-		ServiceWarning          ValueTimestamp     `json:"serviceWarning"`
-		EngineHoursToService    ValueUnitTimestamp `json:"engineHoursToService"`
-		DistanceToService       ValueUnitTimestamp `json:"distanceToService"`
-		WasherFluidLevelWarning ValueTimestamp     `json:"washerFluidLevelWarning"`
-		TimeToService           ValueUnitTimestamp `json:"timeToService"`
+		ServiceWarning          valueTimestamp     `json:"serviceWarning"`
+		EngineHoursToService    valueUnitTimestamp `json:"engineHoursToService"`
+		DistanceToService       valueUnitTimestamp `json:"distanceToService"`
+		WasherFluidLevelWarning valueTimestamp     `json:"washerFluidLevelWarning"`
+		TimeToService           valueUnitTimestamp `json:"timeToService"`
 	} `json:"data"`
 }
 
@@ -87,36 +87,36 @@ type BrakesModel struct {
 
 type WindowsModel struct {
 	Data struct {
-		FrontLeftWindow  ValueTimestamp `json:"frontLeftWindow"`
-		FrontRightWindow ValueTimestamp `json:"frontRightWindow"`
-		RearLeftWindow   ValueTimestamp `json:"rearLeftWindow"`
-		RearRightWindow  ValueTimestamp `json:"rearRightWindow"`
-		Sunroof          ValueTimestamp `json:"sunroof"`
+		FrontLeftWindow  valueTimestamp `json:"frontLeftWindow"`
+		FrontRightWindow valueTimestamp `json:"frontRightWindow"`
+		RearLeftWindow   valueTimestamp `json:"rearLeftWindow"`
+		RearRightWindow  valueTimestamp `json:"rearRightWindow"`
+		Sunroof          valueTimestamp `json:"sunroof"`
 	}
 }
 
 type DoorsModel struct {
 	Data struct {
-		CentralLock    ValueTimestamp `json:"centralLock"`
-		FrontLeftDoor  ValueTimestamp `json:"frontLeftDoor"`
-		FrontRightDoor ValueTimestamp `json:"frontRightDoor"`
-		Hood           ValueTimestamp `json:"hood"`
-		RearLeftDoor   ValueTimestamp `json:"rearLeftDoor"`
-		RearRightDoor  ValueTimestamp `json:"rearRightDoor"`
-		TailGate       ValueTimestamp `json:"tailGate"`
-		TankLid        ValueTimestamp `json:"tankLid"`
+		CentralLock    valueTimestamp `json:"centralLock"`
+		FrontLeftDoor  valueTimestamp `json:"frontLeftDoor"`
+		FrontRightDoor valueTimestamp `json:"frontRightDoor"`
+		Hood           valueTimestamp `json:"hood"`
+		RearLeftDoor   valueTimestamp `json:"rearLeftDoor"`
+		RearRightDoor  valueTimestamp `json:"rearRightDoor"`
+		TailGate       valueTimestamp `json:"tailGate"`
+		TankLid        valueTimestamp `json:"tankLid"`
 	} `json:"data"`
 }
 
 type LockModel struct {
 	Data struct {
-		SuccessNoStatusModel
+		successNoStatusModel
 	}
 }
 
 type LockReducedGuard struct {
 	Data struct {
-		SuccessNoStatusModel
+		successNoStatusModel
 		ReadyToUnlock      bool `json:"readyToUnlock"`
 		ReadyToUnlockUntil int  `json:"readyToUnlockUntil"`
 	} `json:"data"`
@@ -124,7 +124,7 @@ type LockReducedGuard struct {
 
 type UnlockModel struct {
 	Data struct {
-		SuccessNoStatusModel
+		successNoStatusModel
 		ReadyToUnlock      bool `json:"readyToUnlock"`
 		ReadyToUnlockUntil int  `json:"readyToUnlockUntil"`
 	} `json:"data"`
@@ -132,55 +132,55 @@ type UnlockModel struct {
 
 type EngineStatusModel struct {
 	Data struct {
-		EngineStatus ValueTimestamp `json:"engineStatus"`
+		EngineStatus valueTimestamp `json:"engineStatus"`
 	} `json:"data"`
 }
 
 type EngineStartModel struct {
 	Data struct {
-		SuccessNoStatusModel
+		successNoStatusModel
 	} `json:"data"`
 }
 
 type EngineStopModel struct {
 	Data struct {
-		SuccessNoStatusModel
+		successNoStatusModel
 	} `json:"data"`
 }
 
 type FuelModel struct {
 	Data struct {
-		FuelAmount         ValueUnitTimestamp `json:"fuelAmount,omitempty"`
-		BatteryChargeLevel ValueUnitTimestamp `json:"batteryChargeLevel"`
+		FuelAmount         valueUnitTimestamp `json:"fuelAmount,omitempty"`
+		BatteryChargeLevel valueUnitTimestamp `json:"batteryChargeLevel"`
 	}
 }
 
 type OdometerModel struct {
 	Data struct {
-		Odometer ValueUnitTimestamp `json:"odometer" mapstructure:",omitempty"`
+		Odometer valueUnitTimestamp `json:"odometer" mapstructure:",omitempty"`
 	}
 }
 
 type StatisticsModel struct {
 	Data struct {
-		AverageFuelConsumption          ValueUnitTimestamp `json:"averageFuelConsumption"`
-		AverageEnergyConsumption        ValueUnitTimestamp `json:"averageEnergyConsumption"`
-		AverageFuelConsumptionAutomatic ValueUnitTimestamp `json:"averageFuelConsumptionAutomatic"`
-		AverageSpeed                    ValueUnitTimestamp `json:"averageSpeed"`
-		AverageSpeedAutomatic           ValueUnitTimestamp `json:"averageSpeedAutomatic"`
-		TripMeterManual                 ValueUnitTimestamp `json:"tripMeterManual"`
-		TripMeterAutomatic              ValueUnitTimestamp `json:"tripMeterAutomatic"`
-		DistanceToEmptyTank             ValueUnitTimestamp `json:"distanceToEmptyTank"`
-		DistanceToEmptyBattery          ValueUnitTimestamp `json:"distanceToEmptyBattery"`
+		AverageFuelConsumption          valueUnitTimestamp `json:"averageFuelConsumption"`
+		AverageEnergyConsumption        valueUnitTimestamp `json:"averageEnergyConsumption"`
+		AverageFuelConsumptionAutomatic valueUnitTimestamp `json:"averageFuelConsumptionAutomatic"`
+		AverageSpeed                    valueUnitTimestamp `json:"averageSpeed"`
+		AverageSpeedAutomatic           valueUnitTimestamp `json:"averageSpeedAutomatic"`
+		TripMeterManual                 valueUnitTimestamp `json:"tripMeterManual"`
+		TripMeterAutomatic              valueUnitTimestamp `json:"tripMeterAutomatic"`
+		DistanceToEmptyTank             valueUnitTimestamp `json:"distanceToEmptyTank"`
+		DistanceToEmptyBattery          valueUnitTimestamp `json:"distanceToEmptyBattery"`
 	} `json:"data"`
 }
 
 type TyresModel struct {
 	Data struct {
-		FrontLeft  ValueTimestamp `json:"frontLeft"`
-		FrontRight ValueTimestamp `json:"frontRight"`
-		RearLeft   ValueTimestamp `json:"rearLeft"`
-		RearRight  ValueTimestamp `json:"rearRight"`
+		FrontLeft  valueTimestamp `json:"frontLeft"`
+		FrontRight valueTimestamp `json:"frontRight"`
+		RearLeft   valueTimestamp `json:"rearLeft"`
+		RearRight  valueTimestamp `json:"rearRight"`
 	} `json:"data"`
 }
 
@@ -212,28 +212,28 @@ type VehicleModel struct {
 
 type WarningsModel struct {
 	Data struct {
-		BrakeLightLeftWarning           ValueTimestamp `json:"brakeLightLeftWarning"`
-		BrakeLightCenterWarning         ValueTimestamp `json:"brakeLightCenterWarning"`
-		BrakeLightRightWarning          ValueTimestamp `json:"brakeLightRightWarning"`
-		FogLightFrontWarning            ValueTimestamp `json:"fogLightFrontWarning"`
-		FogLightRearWarning             ValueTimestamp `json:"fogLightRearWarning"`
-		PositionLightFrontLeftWarning   ValueTimestamp `json:"positionLightFrontLeftWarning"`
-		PositionLightFrontRightWarning  ValueTimestamp `json:"positionLightFrontRightWarning"`
-		PositionLightRearLeftWarning    ValueTimestamp `json:"positionLightRearLeftWarning"`
-		PositionLightRearRightWarning   ValueTimestamp `json:"positionLightRearRightWarning"`
-		HighBeamLeftWarning             ValueTimestamp `json:"highBeamLeftWarning"`
-		HighBeamRightWarning            ValueTimestamp `json:"highBeamRightWarning"`
-		LowBeamLeftWarning              ValueTimestamp `json:"lowBeamLeftWarning"`
-		LowBeamRightWarning             ValueTimestamp `json:"lowBeamRightWarning"`
-		DaytimeRunningLightLeftWarning  ValueTimestamp `json:"daytimeRunningLightLeftWarning"`
-		DaytimeRunningLightRightWarning ValueTimestamp `json:"daytimeRunningLightRightWarning"`
-		TurnIndicationFrontLeftWarning  ValueTimestamp `json:"turnIndicationFrontLeftWarning"`
-		TurnIndicationFrontRightWarning ValueTimestamp `json:"turnIndicationFrontRightWarning"`
-		TurnIndicationRearLeftWarning   ValueTimestamp `json:"turnIndicationRearLeftWarning"`
-		TurnIndicationRearRightWarning  ValueTimestamp `json:"turnIndicationRearRightWarning"`
-		RegistrationPlateLightWarning   ValueTimestamp `json:"registrationPlateLightWarning"`
-		SideMarkLightsWarning           ValueTimestamp `json:"sideMarkLightsWarning"`
-		HazardLightsWarning             ValueTimestamp `json:"hazardLightsWarning"`
-		ReverseLightsWarning            ValueTimestamp `json:"reverseLightsWarning"`
+		BrakeLightLeftWarning           valueTimestamp `json:"brakeLightLeftWarning"`
+		BrakeLightCenterWarning         valueTimestamp `json:"brakeLightCenterWarning"`
+		BrakeLightRightWarning          valueTimestamp `json:"brakeLightRightWarning"`
+		FogLightFrontWarning            valueTimestamp `json:"fogLightFrontWarning"`
+		FogLightRearWarning             valueTimestamp `json:"fogLightRearWarning"`
+		PositionLightFrontLeftWarning   valueTimestamp `json:"positionLightFrontLeftWarning"`
+		PositionLightFrontRightWarning  valueTimestamp `json:"positionLightFrontRightWarning"`
+		PositionLightRearLeftWarning    valueTimestamp `json:"positionLightRearLeftWarning"`
+		PositionLightRearRightWarning   valueTimestamp `json:"positionLightRearRightWarning"`
+		HighBeamLeftWarning             valueTimestamp `json:"highBeamLeftWarning"`
+		HighBeamRightWarning            valueTimestamp `json:"highBeamRightWarning"`
+		LowBeamLeftWarning              valueTimestamp `json:"lowBeamLeftWarning"`
+		LowBeamRightWarning             valueTimestamp `json:"lowBeamRightWarning"`
+		DaytimeRunningLightLeftWarning  valueTimestamp `json:"daytimeRunningLightLeftWarning"`
+		DaytimeRunningLightRightWarning valueTimestamp `json:"daytimeRunningLightRightWarning"`
+		TurnIndicationFrontLeftWarning  valueTimestamp `json:"turnIndicationFrontLeftWarning"`
+		TurnIndicationFrontRightWarning valueTimestamp `json:"turnIndicationFrontRightWarning"`
+		TurnIndicationRearLeftWarning   valueTimestamp `json:"turnIndicationRearLeftWarning"`
+		TurnIndicationRearRightWarning  valueTimestamp `json:"turnIndicationRearRightWarning"`
+		RegistrationPlateLightWarning   valueTimestamp `json:"registrationPlateLightWarning"`
+		SideMarkLightsWarning           valueTimestamp `json:"sideMarkLightsWarning"`
+		HazardLightsWarning             valueTimestamp `json:"hazardLightsWarning"`
+		ReverseLightsWarning            valueTimestamp `json:"reverseLightsWarning"`
 	} `json:"data"`
 }
