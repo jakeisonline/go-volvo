@@ -12,10 +12,6 @@ import (
 )
 
 func main() {
-	resp, err := api.Call("vehicles", "")
-	if err != nil {
-		fmt.Print(err)
-	} else {
-		fmt.Println(resp)
-	}
+	client := api.NewClient("15b6c230efdb408ba8bd260a4757e71a")
+	fmt.Print(client)
 }
