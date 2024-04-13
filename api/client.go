@@ -34,6 +34,11 @@ func (c *Client) SetAccessToken(newAccessToken string) {
 	c.accessToken = newAccessToken
 }
 
+func (c *Client) GetAuthUrl(redirectUrl string) AuthRedirect {
+	authUrl := createAuthRedirectUrl(redirectUrl, c)
+	return authUrl
+}
+
 func (c *Client) Call(endpointName string, vin string) (*http.Response, error) {
 	resp, err := request(endpointName, vin, c)
 

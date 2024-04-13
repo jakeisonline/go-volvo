@@ -193,7 +193,7 @@ type VehiclesResponse struct {
 type VehicleResponse struct {
 	Data struct {
 		Vin                string  `json:"vin"`
-		ResponseYear       int     `json:"ResponseYear"`
+		ModelYear          int     `json:"modelYear"`
 		Gearbox            string  `json:"gearbox"`
 		FuelType           string  `json:"fuelType"`
 		ExternalColour     string  `json:"externalColour"`
@@ -203,7 +203,7 @@ type VehicleResponse struct {
 			InternalImageURL string `json:"internalImageUrl"`
 		} `json:"images"`
 		Descriptions struct {
-			Response   string `json:"Response"`
+			Model      string `json:"model"`
 			Upholstery string `json:"upholstery"`
 			Steering   string `json:"steering"`
 		} `json:"descriptions"`
