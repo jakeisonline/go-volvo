@@ -150,14 +150,14 @@ type EngineStopResponse struct {
 
 type FuelResponse struct {
 	Data struct {
-		FuelAmount         valueUnitTimestamp `json:"fuelAmount,omitempty"`
+		FuelAmount         valueUnitTimestamp `json:"fuelAmount"`
 		BatteryChargeLevel valueUnitTimestamp `json:"batteryChargeLevel"`
 	}
 }
 
 type OdometerResponse struct {
 	Data struct {
-		Odometer valueUnitTimestamp `json:"odometer" mapstructure:",omitempty"`
+		Odometer valueUnitTimestamp `json:"odometer"`
 	}
 }
 
